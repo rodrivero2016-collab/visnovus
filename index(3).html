@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vis Novus Consulting — Human-Led, AI-Powered</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0d1117;
+    --ink-soft: #1e2530;
+    --ink-muted: #4a5568;
+    --rule: #e2e6ea;
+    --cream: #f9f7f4;
+    --gold: #b8922a;
+    --gold-light: #d4a843;
+    --gold-pale: #f5edd8;
+    --blue-deep: #0f2445;
+    --blue-mid: #1a3a6b;
+    --blue-accent: #2563eb;
+    --white: #ffffff;
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --mono: 'DM Mono', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--white);
+    color: var(--ink);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--blue-deep);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links {
+    display: flex; gap: 2.5rem; list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--blue-deep); }
+  .nav-cta {
+    background: var(--blue-deep);
+    color: var(--white) !important;
+    padding: 0.55rem 1.4rem;
+    border-radius: 3px;
+    font-size: 0.8rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--blue-mid) !important; color: var(--white) !important; }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    background: var(--blue-deep);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg-lines {
+    position: absolute; inset: 0; pointer-events: none; opacity: 0.04;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 79px, rgba(255,255,255,0.5) 80px),
+      repeating-linear-gradient(90deg, transparent, transparent 79px, rgba(255,255,255,0.5) 80px);
+  }
+  .hero-left {
+    padding: 140px 6% 80px 8%;
+    display: flex; flex-direction: column; justify-content: center;
+    position: relative; z-index: 2;
+  }
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block; width: 32px; height: 1px;
+    background: var(--gold);
+  }
+  .hero-h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.6rem, 4.5vw, 4.2rem);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 1.8rem;
+  }
+  .hero-h1 em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+  .hero-sub {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.7);
+    max-width: 480px;
+    line-height: 1.75;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+  .hero-actions {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--ink);
+    padding: 0.9rem 2rem;
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .btn-ghost {
+    border: 1px solid rgba(255,255,255,0.3);
+    color: rgba(255,255,255,0.85);
+    padding: 0.9rem 2rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: border-color 0.2s, color 0.2s;
+    display: inline-block;
+  }
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.7); color: var(--white); }
+
+  .hero-right {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 140px 8% 80px 4%;
+    position: relative; z-index: 2;
+  }
+  .hero-stats {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+  .stat-box {
+    background: rgba(255,255,255,0.03);
+    padding: 2rem 1.75rem;
+    transition: background 0.2s;
+  }
+  .stat-box:hover { background: rgba(255,255,255,0.06); }
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .stat-num span { color: var(--gold-light); }
+  .stat-label {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+  .hero-badges {
+    display: flex; gap: 0.75rem; flex-wrap: wrap;
+  }
+  .badge {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 0.4rem 0.85rem;
+    border-radius: 2px;
+  }
+  .badge.gold {
+    color: var(--gold-light);
+    border-color: rgba(184,146,42,0.4);
+    background: rgba(184,146,42,0.06);
+  }
+
+  /* ─── DIFFERENTIATOR STRIP ─── */
+  .diff-strip {
+    background: var(--cream);
+    border-bottom: 1px solid var(--rule);
+    padding: 1.25rem 5%;
+    display: flex; align-items: center; gap: 3rem;
+    overflow: hidden;
+  }
+  .diff-strip-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .diff-items {
+    display: flex; gap: 2.5rem; align-items: center;
+    flex-wrap: wrap;
+  }
+  .diff-item {
+    display: flex; align-items: center; gap: 0.6rem;
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .diff-item::before {
+    content: ''; display: block;
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ─── SECTION SHARED ─── */
+  section { padding: 100px 5%; }
+  .section-label {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1; max-width: 40px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+  .section-h2 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 700;
+    color: var(--blue-deep);
+    line-height: 1.2;
+    margin-bottom: 1.25rem;
+  }
+  .section-h2 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .section-intro {
+    font-size: 1.05rem;
+    color: var(--ink-muted);
+    max-width: 600px;
+    line-height: 1.8;
+    font-weight: 300;
+    margin-bottom: 3rem;
+  }
+
+  /* ─── WHO WE SERVE ─── */
+  #serve { background: var(--white); }
+  .serve-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 3rem;
+  }
+  .serve-card {
+    background: var(--white);
+    padding: 3rem;
+    position: relative;
+    transition: background 0.2s;
+  }
+  .serve-card:hover { background: var(--cream); }
+  .serve-card-num {
+    font-family: var(--serif);
+    font-size: 4rem;
+    font-weight: 900;
+    color: var(--rule);
+    line-height: 1;
+    margin-bottom: 1rem;
+    position: absolute;
+    top: 2rem; right: 2.5rem;
+  }
+  .serve-card h3 {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--blue-deep);
+    margin-bottom: 1rem;
+  }
+  .serve-card p {
+    font-size: 0.95rem;
+    color: var(--ink-muted);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+  }
+  .serve-tags {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+  }
+  .serve-tag {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--blue-mid);
+    background: rgba(26,58,107,0.07);
+    padding: 0.3rem 0.75rem;
+    border-radius: 2px;
+  }
+
+  /* ─── APPROACH ─── */
+  #approach { background: var(--blue-deep); }
+  #approach .section-h2 { color: var(--white); }
+  #approach .section-intro { color: rgba(255,255,255,0.6); }
+  .approach-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .approach-card {
+    background: rgba(255,255,255,0.02);
+    padding: 3rem;
+    transition: background 0.2s;
+  }
+  .approach-card:hover { background: rgba(255,255,255,0.05); }
+  .approach-phase {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .approach-card h3 {
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+  .approach-card p {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+  }
+  .approach-list {
+    list-style: none;
+    display: flex; flex-direction: column; gap: 0.5rem;
+  }
+  .approach-list li {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.65);
+    display: flex; align-items: flex-start; gap: 0.75rem;
+    line-height: 1.6;
+  }
+  .approach-list li::before {
+    content: '→';
+    color: var(--gold);
+    flex-shrink: 0;
+    margin-top: 0.05rem;
+    font-size: 0.8rem;
+  }
+
+  /* ─── TEAM ─── */
+  #team { background: var(--cream); }
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .team-card {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 2.5rem;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .team-card:hover {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    transform: translateY(-2px);
+  }
+  .team-avatar {
+    width: 56px; height: 56px;
+    background: var(--blue-deep);
+    border-radius: 3px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    flex-shrink: 0;
+  }
+  .team-header {
+    display: flex; align-items: flex-start; gap: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+  .team-name {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--blue-deep);
+    line-height: 1.2;
+    margin-bottom: 0.2rem;
+  }
+  .team-title {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .team-bio {
+    font-size: 0.92rem;
+    color: var(--ink-muted);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+  }
+  .team-tags {
+    display: flex; flex-wrap: wrap; gap: 0.4rem;
+  }
+  .team-tag {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.65rem;
+    border-radius: 2px;
+  }
+  .tag-clearance {
+    background: rgba(37,99,235,0.1);
+    color: var(--blue-mid);
+  }
+  .tag-cert {
+    background: rgba(184,146,42,0.12);
+    color: #8a6a1a;
+  }
+  .tag-domain {
+    background: var(--cream);
+    color: var(--ink-muted);
+    border: 1px solid var(--rule);
+  }
+  .team-note {
+    margin-top: 3rem;
+    font-size: 0.78rem;
+    color: var(--ink-muted);
+    font-style: italic;
+    border-top: 1px solid var(--rule);
+    padding-top: 1.5rem;
+    line-height: 1.7;
+    max-width: 720px;
+  }
+
+  /* ─── INSTITUTIONS TICKER ─── */
+  .ticker-section {
+    background: var(--white);
+    padding: 3rem 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    overflow: hidden;
+  }
+  .ticker-label {
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 2rem;
+  }
+  .ticker-track {
+    display: flex; gap: 4rem;
+    animation: ticker 50s linear infinite;
+    width: max-content;
+  }
+  .ticker-track:hover { animation-play-state: paused; }
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .ticker-item {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ink-muted);
+    white-space: nowrap;
+    opacity: 0.5;
+    transition: opacity 0.2s;
+  }
+  .ticker-item:hover { opacity: 0.9; }
+  .ticker-sep { color: var(--rule); opacity: 0.8; font-weight: 300; }
+  .ticker-disclaimer {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.7rem;
+    color: var(--ink-muted);
+    font-style: italic;
+    padding: 0 5%;
+  }
+
+  /* ─── ENGAGEMENT ─── */
+  #contact { background: var(--white); }
+  .engagement-card {
+    background: var(--blue-deep);
+    border-radius: 6px;
+    padding: 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    margin-top: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .engagement-card::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(184,146,42,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .engagement-title {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  .engagement-title em { color: var(--gold-light); font-style: italic; }
+  .engagement-sub {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.8;
+    font-weight: 300;
+    margin-bottom: 2rem;
+  }
+  .engagement-sprint {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 4px;
+    padding: 2rem;
+  }
+  .sprint-title {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .sprint-name {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+  }
+  .sprint-deliverables {
+    list-style: none;
+    display: flex; flex-direction: column; gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .sprint-deliverables li {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.6);
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .sprint-deliverables li::before {
+    content: '✓';
+    color: var(--gold);
+    font-size: 0.75rem;
+    flex-shrink: 0;
+  }
+  .sprint-price {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+  .sprint-price span {
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.4);
+    font-weight: 300;
+    margin-left: 0.25rem;
+  }
+  .contact-methods {
+    display: flex; flex-direction: column; gap: 1rem;
+    margin-top: 2rem;
+  }
+  .contact-item {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.5);
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .contact-item strong { color: rgba(255,255,255,0.8); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--ink);
+    padding: 3rem 5% 2rem;
+    color: rgba(255,255,255,0.4);
+  }
+  .footer-inner {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    gap: 3rem; flex-wrap: wrap;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    margin-bottom: 1.5rem;
+  }
+  .footer-brand {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 0.5rem;
+  }
+  .footer-brand span { color: var(--gold); }
+  .footer-tagline {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.3);
+    font-style: italic;
+  }
+  .footer-creds {
+    display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1rem;
+  }
+  .footer-cred {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 0.3rem 0.65rem;
+    border-radius: 2px;
+  }
+  .footer-nav {
+    display: flex; gap: 1.5rem; list-style: none; flex-wrap: wrap;
+    align-items: center;
+  }
+  .footer-nav a {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.35);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-nav a:hover { color: rgba(255,255,255,0.7); }
+  .footer-copy {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.2);
+    text-align: center;
+  }
+
+  /* ─── MVV ─── */
+  #mvv { background: var(--cream); }
+  .mvv-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1px; background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 3rem;
+  }
+  .values-section-label {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-top: 2.5rem;
+    margin-bottom: 0;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .values-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 1px; background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 0 0 4px 4px;
+    overflow: hidden;
+    margin-top: 0;
+  }
+  .value-icon {
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--gold);
+    opacity: 0.35;
+    line-height: 1;
+    margin-bottom: 0.75rem;
+  }
+  .mvv-card {
+    background: var(--white);
+    padding: 2.5rem;
+    transition: background 0.2s;
+  }
+  .mvv-card:hover { background: var(--cream); }
+  .mvv-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .mvv-card h3 {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--blue-deep);
+    margin-bottom: 0.75rem;
+  }
+  .mvv-card p {
+    font-size: 0.9rem;
+    color: var(--ink-muted);
+    line-height: 1.8;
+    font-weight: 300;
+  }
+  .values-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1px; background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 2px;
+  }
+  .value-item {
+    background: var(--white);
+    padding: 2rem 2.5rem;
+    transition: background 0.2s;
+  }
+  .value-item:hover { background: var(--cream); }
+  .value-item h4 {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--blue-deep);
+    margin-bottom: 0.4rem;
+  }
+  .value-item p {
+    font-size: 0.85rem;
+    color: var(--ink-muted);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    #hero { grid-template-columns: 1fr; }
+    .hero-right { padding: 0 8% 80px; }
+    .hero-stats { grid-template-columns: 1fr 1fr; }
+    .serve-grid, .approach-grid, .team-grid, .mvv-grid { grid-template-columns: 1fr; }
+    .values-grid { grid-template-columns: 1fr 1fr; }
+    .engagement-card { grid-template-columns: 1fr; gap: 2rem; }
+    nav { padding: 0 4%; }
+    .nav-links { gap: 1.5rem; }
+    .nav-links li:not(:last-child) { display: none; }
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-eyebrow { animation: fadeUp 0.6s ease both; animation-delay: 0.1s; }
+  .hero-h1 { animation: fadeUp 0.6s ease both; animation-delay: 0.25s; }
+  .hero-sub { animation: fadeUp 0.6s ease both; animation-delay: 0.4s; }
+  .hero-actions { animation: fadeUp 0.6s ease both; animation-delay: 0.55s; }
+  .hero-stats { animation: fadeUp 0.6s ease both; animation-delay: 0.35s; }
+  .hero-badges { animation: fadeUp 0.6s ease both; animation-delay: 0.5s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">Vis <span>Novus</span> Consulting</a>
+  <ul class="nav-links">
+    <li><a href="#serve">Who We Serve</a></li>
+    <li><a href="#approach">Approach</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#contact" class="nav-cta">Discovery Call</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-lines"></div>
+  <div class="hero-left">
+    <div class="hero-eyebrow">Human-Led, AI-Powered · Austin, Texas · Est. 2024</div>
+    <h1 class="hero-h1">
+      We've Run<br>
+      the Programs<br>
+      <em>You're Building.</em>
+    </h1>
+    <p class="hero-sub">
+      Your transformation doesn't need another framework. It needs people who've commanded under fire, briefed the National Security Advisor, and kept $650M programs on track — backed by 25 years of enterprise cloud architecture, Power BI and Power Automate expertise, and a client partner who has driven $30M in healthcare program growth. That's who picks up the phone when you call.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Start Discovery Sprint</a>
+      <a href="#approach" class="btn-ghost">Our Method →</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-stats">
+      <div class="stat-box">
+        <div class="stat-num">$2<span>B+</span></div>
+        <div class="stat-label">Programs Managed</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">100<span>+</span></div>
+        <div class="stat-label">Years Combined</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">2</div>
+        <div class="stat-label">TS/SCI w/ Poly</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">50<span>+</span></div>
+        <div class="stat-label">Transformations Led</div>
+      </div>
+    </div>
+    <div class="hero-badges">
+      <span class="badge gold">SAM.gov Registered</span>
+      <span class="badge gold">Texas CMBL</span>
+      <span class="badge">TS/SCI Cleared Partners</span>
+    </div>
+  </div>
+</section>
+
+<!-- DIFFERENTIATOR STRIP -->
+<div class="diff-strip">
+  <div class="diff-strip-label">Partner Depth</div>
+  <div class="diff-items">
+    <div class="diff-item">Former CIA Chief of Station</div>
+    <div class="diff-item">Army LTC · Combat Command</div>
+    <div class="diff-item">$650M State Program Oversight</div>
+    <div class="diff-item">Rackspace · Gartner · Charles Schwab</div>
+    <div class="diff-item">DIA · NORTHCOM · Booz Allen</div>
+    <div class="diff-item">Power BI · Power Automate · Cloud</div>
+  </div>
+</div>
+
+<!-- INSTITUTIONS TICKER -->
+<div class="ticker-section">
+  <div class="ticker-label">Organizations where our partners have served</div>
+  <div style="overflow:hidden;">
+    <div class="ticker-track">
+      <span class="ticker-item">U.S. Army</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">CIA</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">DIA</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">NORTHCOM</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">Booz Allen Hamilton</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">TX DSHS</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">TX HHSC</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">TX DMV</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">Rackspace</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">Charles Schwab</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">Gartner</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">Wells Fargo</span><span class="ticker-sep">·</span>
+      <!-- duplicate for seamless loop -->
+      <span class="ticker-item">U.S. Army</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">CIA</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">DIA</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">NORTHCOM</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">Booz Allen Hamilton</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">TX DSHS</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">TX HHSC</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">TX DMV</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">Rackspace</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">Charles Schwab</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">Gartner</span><span class="ticker-sep">·</span>
+      <span class="ticker-item">Wells Fargo</span><span class="ticker-sep">·</span>
+    </div>
+  </div>
+  <p class="ticker-disclaimer">Past employers listed for biographical context only — no current affiliation, partnership, or endorsement by any listed organization is implied or should be inferred.</p>
+</div>
+
+<!-- WHO WE SERVE -->
+<section id="serve">
+  <div class="section-label">Who We Serve</div>
+  <h2 class="section-h2">Built for <em>Both Sectors.</em></h2>
+  <p class="section-intro">Whether you're navigating federal procurement or building the operational discipline your private organization has outgrown — our team has operated inside your environment at the highest levels.</p>
+  <div class="serve-grid">
+    <div class="serve-card">
+      <div class="serve-card-num">01</div>
+      <h3>Public Sector</h3>
+      <p>Federal agencies, state departments, and defense contractors trust firms that have actually operated inside complex bureaucracies — from field command to Inspector General oversight to interagency program execution. We don't learn on your dime.</p>
+      <div class="serve-tags">
+        <span class="serve-tag">Federal Agencies</span>
+        <span class="serve-tag">State Government</span>
+        <span class="serve-tag">DOD / Defense</span>
+        <span class="serve-tag">Texas DIR</span>
+        <span class="serve-tag">Teaming / Subcontracting</span>
+      </div>
+    </div>
+    <div class="serve-card">
+      <div class="serve-card-num">02</div>
+      <h3>Private Sector</h3>
+      <p>Mid-market and growth-stage organizations hire us to install the operational discipline and leadership culture that high-performing teams run on. We bring the rigor of military command and enterprise consulting directly to your bottom line.</p>
+      <div class="serve-tags">
+        <span class="serve-tag">Healthcare Systems</span>
+        <span class="serve-tag">Financial Services</span>
+        <span class="serve-tag">Technology</span>
+        <span class="serve-tag">Manufacturing</span>
+        <span class="serve-tag">Growth-Stage</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MVV -->
+<section id="mvv">
+  <div class="section-label">Mission, Vision & Values</div>
+  <h2 class="section-h2">Not Consultants.<br><em>Operators.</em></h2>
+  <div class="mvv-grid">
+    <div class="mvv-card">
+      <div class="mvv-label">Mission</div>
+      <h3>Transform from the Inside</h3>
+      <p>We embed alongside your leaders, earn trust the old-fashioned way, and measure success by outcomes — not deliverables. No parachute-in, report-and-leave engagements.</p>
+    </div>
+    <div class="mvv-card">
+      <div class="mvv-label">Vision</div>
+      <h3>Built to Endure</h3>
+      <p>Every organization — public or private — led with integrity, powered by intelligence, and structured to outlast any individual contributor, including us.</p>
+    </div>
+  </div>
+  <div class="values-section-label">Our Values</div>
+  <div class="values-grid">
+    <div class="value-item">
+      <div class="value-icon">I</div>
+      <h4>Integrity</h4>
+      <p>We say what we mean and deliver what we promise — no exceptions, regardless of scope or contract size.</p>
+    </div>
+    <div class="value-item">
+      <div class="value-icon">E</div>
+      <h4>Excellence</h4>
+      <p>Pentagon-grade standards applied to every engagement. No tiers of effort based on contract value.</p>
+    </div>
+    <div class="value-item">
+      <div class="value-icon">E</div>
+      <h4>Empathy</h4>
+      <p>Transformation without trust is just disruption. We lead with people before we ever lead with process.</p>
+    </div>
+    <div class="value-item">
+      <div class="value-icon">I</div>
+      <h4>Innovation</h4>
+      <p>Proven leadership frameworks paired with cutting-edge AI — never one without the other.</p>
+    </div>
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section id="approach">
+  <div class="section-label">The Vis Novus Method</div>
+  <h2 class="section-h2">Culture First.<br><em>Then Intelligence.</em></h2>
+  <p class="section-intro">Most transformation efforts fail because they lead with technology and ignore people. We reverse that sequence — and the results are lasting.</p>
+  <div class="approach-grid">
+    <div class="approach-card">
+      <div class="approach-phase">Phase One · Foundation</div>
+      <h3>Leadership, Culture & Change Management</h3>
+      <p>Before any tool can work, your people must be aligned, trusted, and ready to lead. We diagnose the organizational health gap and close it — starting with the people who carry the mission.</p>
+      <ul class="approach-list">
+        <li>Organizational Health Assessment (30-Day Discovery Sprint)</li>
+        <li>Executive Leadership Cohort Development</li>
+        <li>Change Management Strategy & Implementation</li>
+        <li>Culture Alignment Workshops</li>
+        <li>Strategic Planning Facilitation</li>
+        <li>Process Improvement — Lean / Scrum</li>
+      </ul>
+    </div>
+    <div class="approach-card">
+      <div class="approach-phase">Phase Two · Acceleration</div>
+      <h3>AI Integration & Business Intelligence</h3>
+      <p>Once the culture is ready, we introduce AI as the natural next chapter — not as disruption, but as acceleration of the transformation already underway. Our team builds and delivers the tools, not just the roadmaps.</p>
+      <ul class="approach-list">
+        <li>AI Readiness Assessment & Roadmap</li>
+        <li>Power BI Executive Dashboards</li>
+        <li>Power Automate Workflow Optimization</li>
+        <li>AI Literacy Training for Workforce</li>
+        <li>Cloud Architecture & Data Infrastructure</li>
+        <li>Ongoing Business Intelligence Support</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="section-label">The Team</div>
+  <h2 class="section-h2">Five Partners.<br><em>Zero Learning Curve.</em></h2>
+  <p class="section-intro">Every partner has led organizations under real pressure — managing multi-billion-dollar programs, commanding hundreds of personnel, operating in the world's most complex environments. No associates. No junior staff. You work directly with principals.</p>
+  <div class="team-grid">
+
+    <div class="team-card">
+      <div class="team-header">
+        <div class="team-avatar">JC</div>
+        <div>
+          <div class="team-name">Juan Cuellar</div>
+          <div class="team-title">CEO & Managing Partner</div>
+        </div>
+      </div>
+      <p class="team-bio">Retired Army LTC with 23 years of service including combat command in Iraq. Senior Consultant at Booz Allen Hamilton. Senior Advisor to the Associate Commissioner at TX DSHS, coordinating a $2B budget and 400+ personnel. PhD (ABD) in Humanities. Adjunct Faculty at Southern New Hampshire University. Holder of TS/SCI clearance.</p>
+      <div class="team-tags">
+        <span class="team-tag tag-clearance">TS/SCI</span>
+        <span class="team-tag tag-cert">PSM I · Scrum.org</span>
+        <span class="team-tag tag-domain">Program Management</span>
+        <span class="team-tag tag-domain">Strategic Planning</span>
+        <span class="team-tag tag-domain">Government</span>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-header">
+        <div class="team-avatar">MB</div>
+        <div>
+          <div class="team-name">Melissa Burgess</div>
+          <div class="team-title">CBO & Founder</div>
+        </div>
+      </div>
+      <p class="team-bio">17+ years in healthcare program management with a track record of $30M+ in revenue growth. Deep expertise in large-scale organizational transformation at TX DSHS and TX HHSC. Client-facing lead for Vis Novus engagements, bringing a rare combination of operational depth and executive presence to every client relationship.</p>
+      <div class="team-tags">
+        <span class="team-tag tag-cert">PMP Pending</span>
+        <span class="team-tag tag-domain">Healthcare</span>
+        <span class="team-tag tag-domain">Culture Development</span>
+        <span class="team-tag tag-domain">Client Leadership</span>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-header">
+        <div class="team-avatar">SF</div>
+        <div>
+          <div class="team-name">Stephanie Froelich</div>
+          <div class="team-title">CTO & Technical Partner</div>
+        </div>
+      </div>
+      <p class="team-bio">25+ years in IT leadership spanning cloud architecture, Power Platform, and enterprise data systems. Currently managing operational oversight of ~$650M in state and federal grant money at TX DSHS using Power BI and Power Automate. Champion of the State's Hyper Automation Center of Excellence and graduate of the Continuous Improvement Academy (Lean Six Sigma). MBA, University of Dallas.</p>
+      <div class="team-tags">
+        <span class="team-tag tag-clearance">TS/SCI</span>
+        <span class="team-tag tag-cert">Power BI Certified</span>
+        <span class="team-tag tag-cert">Power Automate Certified</span>
+        <span class="team-tag tag-domain">Cloud Architecture</span>
+        <span class="team-tag tag-domain">SQL · AWS · Azure</span>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-header">
+        <div class="team-avatar">SFr</div>
+        <div>
+          <div class="team-name">Stefan Froelich</div>
+          <div class="team-title">Principal IT Partner</div>
+        </div>
+      </div>
+      <p class="team-bio">Professional Services Observability Architect and PS Team Manager at Rackspace, with prior roles as Principal Observability Engineer at Gartner and Technology Director at Charles Schwab (17 years). Expertise in Datadog, Dynatrace, AppDynamics, AWS/Azure, and Full Stack Observability. BS Aerospace Engineering, Ohio State University.</p>
+      <div class="team-tags">
+        <span class="team-tag tag-cert">Datadog Partner SE</span>
+        <span class="team-tag tag-cert">AppDynamics Blackbelt</span>
+        <span class="team-tag tag-domain">Cloud Infrastructure</span>
+        <span class="team-tag tag-domain">APM / Observability</span>
+        <span class="team-tag tag-domain">Enterprise IT</span>
+      </div>
+    </div>
+
+    <div class="team-card" style="grid-column: 1 / -1; max-width: 600px;">
+      <div class="team-header">
+        <div class="team-avatar">JL</div>
+        <div>
+          <div class="team-name">Jerry Lopez</div>
+          <div class="team-title">Principal Consultant & Intelligence Partner</div>
+        </div>
+      </div>
+      <p class="team-bio">Retired Senior CIA Operations Officer with an extensive career as former CIA Chief of Station and Deputy Chief of Station across complex global environments. Former U.S. Department of State Foreign Service Officer. Expertise in HUMINT operations, counterterrorism, counterintelligence, and covert action. Near-native Spanish speaker. Inspector, CIA Office of the Inspector General (2019–2023).</p>
+      <div class="team-tags">
+        <span class="team-tag tag-clearance">TS/SCI + Poly</span>
+        <span class="team-tag tag-domain">HUMINT</span>
+        <span class="team-tag tag-domain">Counterintelligence</span>
+        <span class="team-tag tag-domain">Counterterrorism</span>
+        <span class="team-tag tag-domain">EN / ES Bilingual</span>
+      </div>
+    </div>
+
+  </div>
+  <p class="team-note">Past employers and affiliations listed for biographical context only. No current affiliation, partnership, or endorsement by the U.S. Government, CIA, DIA, U.S. Army, or any listed private organization is implied or should be inferred. Clearance holders comply with all applicable disclosure and nondisclosure obligations.</p>
+</section>
+
+<!-- ENGAGEMENT / CONTACT -->
+<section id="contact">
+  <div class="section-label">Get Started</div>
+  <h2 class="section-h2">Your Transformation<br>Starts with a <em>Conversation.</em></h2>
+  <div class="engagement-card">
+    <div>
+      <h3 class="engagement-title">The 30-Day<br><em>Discovery Sprint</em></h3>
+      <p class="engagement-sub">A structured, low-risk engagement that maps your culture gaps, leadership alignment, and AI readiness. You leave with a data-backed Power BI report and a clear transformation roadmap — delivered by the people who'll execute it.</p>
+      <a href="mailto:info@visnovus.com" class="btn-primary">Schedule Discovery Call</a>
+      <div class="contact-methods">
+        <div class="contact-item"><strong>Email</strong> info@visnovus.com</div>
+        <div class="contact-item"><strong>Location</strong> Austin, Texas</div>
+        <div class="contact-item"><strong>Procurement</strong> SAM.gov · Texas CMBL · ESBD</div>
+        <div class="contact-item"><strong>Response</strong> Within 1 business day</div>
+      </div>
+    </div>
+    <div class="engagement-sprint">
+      <div class="sprint-title">Featured Engagement</div>
+      <div class="sprint-name">Organizational Health Discovery Sprint</div>
+      <ul class="sprint-deliverables">
+        <li>30-day structured assessment</li>
+        <li>Leadership alignment diagnostic</li>
+        <li>Culture & change readiness map</li>
+        <li>Power BI executive dashboard</li>
+        <li>Transformation roadmap briefing</li>
+        <li>Direct partner delivery — no associates</li>
+      </ul>
+      <div class="sprint-price">$5K – $10K <span>· fixed fee</span></div>
+      <a href="mailto:info@visnovus.com" class="btn-primary" style="font-size:0.8rem; padding:0.75rem 1.5rem;">Inquire Now</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Vis <span>Novus</span> Consulting LLC</div>
+      <div class="footer-tagline">Human-Led, AI-Powered · Austin, Texas</div>
+      <div class="footer-creds">
+        <span class="footer-cred">SAM.gov Registered</span>
+        <span class="footer-cred">Texas CMBL</span>
+        <span class="footer-cred">Est. 2024</span>
+      </div>
+    </div>
+    <ul class="footer-nav">
+      <li><a href="#serve">Who We Serve</a></li>
+      <li><a href="#approach">Approach</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+  <div class="footer-copy">© 2025 Vis Novus Consulting LLC · Austin, Texas · All rights reserved</div>
+</footer>
+
+</body>
+</html>
